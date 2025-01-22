@@ -1,6 +1,6 @@
 {% set name = "minuit2" %}
-{% set version = "6.22.06" %}
-{% set build_number = 1 %}
+{% set version = "6-35-01" %}
+{% set build_number = 0 %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/root-project/root/archive/v{{ version|replace(".","-") }}.tar.gz
-  sha256: 81fe6403a3cf51bb1c411f240d9c233473a833e5738b3abf68ed55d0d27ce1cd
+  sha256: 6a7890b79231b94e20d5e6c4da64303b6a5fc30639359973c2fae566771fd81e
   patches:
     - 0001-mathcore_standalone.patch
     - 0002-Add-project-to-allow-Clang-features-to-be-detected.patch
@@ -16,7 +16,7 @@ source:
 build:
   # Give standalone a higher priority by bumping the build number by 100
   number: {{ build_number|int + 100 }}
-  skip: True  # [win]
+  skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('minuit2', max_pin='x.x') }}
 
